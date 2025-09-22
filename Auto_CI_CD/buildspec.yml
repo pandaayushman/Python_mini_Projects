@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - pip install --no-cache-dir -r requirements.txt
+  build:
+    commands:
+      - pytest tests/
+      - docker build --platform linux/amd64 -t python-app:latest .
+artifacts:
+  files:
+    - '**/*'
+cache:
+  paths:
+    - '/root/.cache/pip'
